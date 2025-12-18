@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadszio Salon | Premium Beauty Salon</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e91e63;
+            --secondary: #9c27b0;
+            --dark: #2d2d2d;
+            --light: #fdf5f7;
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: white;
+            color: var(--dark);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.85), rgba(156, 39, 176, 0.85)),
+                url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 45px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 0;
+            font-weight: 600;
+            margin: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 35px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Services */
+        .services {
+            padding: 120px 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 50px 30px;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(233, 30, 99, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .service-card .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Stylists */
+        .stylists {
+            padding: 120px 5%;
+            background: var(--light);
+        }
+
+        .stylists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stylist-card {
+            text-align: center;
+        }
+
+        .stylist-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stylist-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .stylist-card .role {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .stylist-card p {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* Booking */
+        .booking {
+            padding: 120px 5%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .booking-form {
+            max-width: 500px;
+            margin: 50px auto 0;
+            display: grid;
+            gap: 20px;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            padding: 18px 25px;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+        }
+
+        .booking-form button {
+            padding: 20px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .booking-form button:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 120px 5%;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Contact */
+        .contact {
+            padding: 80px 5%;
+            background: var(--dark);
+            color: white;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 30px 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.6;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            nav a {
+                margin: 8px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">LEADSZIO SALON</div>
+        <div>
+            <a href="#services">Services</a>
+            <a href="#stylists">Stylists</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#booking">Book Now</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Beauty Redefined</h1>
+            <p>Experience luxury beauty treatments from our expert stylists</p>
+            <a href="#booking" class="btn">Book Appointment</a>
+            <a href="#services" class="btn btn-outline">Our Services</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Premium treatments tailored just for you</p>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">✂️</div>
+                <h3>Hair Styling</h3>
+                <p>Expert cuts, coloring, and styling for all hair types. Transform your look with our talented
+                    stylists.</p>
+                <div class="price">From ₹499</div>
+            </div>
+            <div class="service-card">
+                <div class="icon">💅</div>
+                <h3>Nail Art</h3>
+                <p>Manicure, pedicure, and stunning nail art designs. Pamper your hands and feet.</p>
+                <div class="price">From ₹299</div>
+            </div>
+            <div class="service-card">
+                <div class="icon">💆</div>
+                <h3>Facial & Skincare</h3>
+                <p>Rejuvenating facials and advanced skincare treatments for glowing skin.</p>
+                <div class="price">From ₹799</div>
+            </div>
+            <div class="service-card">
+                <div class="icon">💄</div>
+                <h3>Bridal Makeup</h3>
+                <p>Complete bridal packages including makeup, hair, and pre-wedding treatments.</p>
+                <div class="price">From ₹15,000</div>
+            </div>
+            <div class="service-card">
+                <div class="icon">✨</div>
+                <h3>Spa & Massage</h3>
+                <p>Relaxing spa treatments and therapeutic massages to rejuvenate your body and mind.</p>
+                <div class="price">From ₹999</div>
+            </div>
+            <div class="service-card">
+                <div class="icon">🌟</div>
+                <h3>Hair Treatments</h3>
+                <p>Keratin, smoothening, and hair spa treatments for healthy, lustrous hair.</p>
+                <div class="price">From ₹2,499</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stylists" class="stylists">
+        <h2 class="section-title">Meet Our Experts</h2>
+        <p class="section-subtitle">Talented professionals dedicated to your beauty</p>
+        <div class="stylists-grid">
+            <div class="stylist-card">
+                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400" alt="Stylist">
+                <h3>Priya Malhotra</h3>
+                <div class="role">Senior Hair Stylist</div>
+                <p>15+ years of experience in hair transformations</p>
+            </div>
+            <div class="stylist-card">
+                <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400" alt="Stylist">
+                <h3>Anita Sharma</h3>
+                <div class="role">Bridal Makeup Artist</div>
+                <p>500+ brides beautified with stunning looks</p>
+            </div>
+            <div class="stylist-card">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" alt="Stylist">
+                <h3>Neha Kapoor</h3>
+                <div class="role">Nail Art Specialist</div>
+                <p>Creative designs and premium nail care</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking" class="booking">
+        <h2 class="section-title" style="color: white;">Book Your Appointment</h2>
+        <p style="opacity: 0.9;">Schedule your beauty session in just a few clicks</p>
+        <form class="booking-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <select required>
+                <option value="">Select Service</option>
+                <option>Hair Styling</option>
+                <option>Nail Art</option>
+                <option>Facial & Skincare</option>
+                <option>Bridal Makeup</option>
+                <option>Spa & Massage</option>
+            </select>
+            <input type="date" required>
+            <select required>
+                <option value="">Select Time</option>
+                <option>10:00 AM</option>
+                <option>11:00 AM</option>
+                <option>2:00 PM</option>
+                <option>4:00 PM</option>
+                <option>6:00 PM</option>
+            </select>
+            <button type="submit">Confirm Booking</button>
+        </form>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Our Work</h2>
+        <p class="section-subtitle">Browse through our stunning transformations</p>
+        <div class="gallery-grid">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600" alt="Gallery">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600" alt="Gallery">
+            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600" alt="Gallery">
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600" alt="Gallery">
+            <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=600" alt="Gallery">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600" alt="Gallery">
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Visit Us</h3>
+                <p>📍Your City, Your Area</p>
+                <p>📞 Contact via website form</p>
+                <p>🕐 Open: 10 AM - 8 PM (Mon-Sat)</p>
+                <a href="#" class="whatsapp-btn">💬 Book Now</a>
+            </div>
+            <div class="contact-info">
+                <h3>Follow Our Work</h3>
+                <p>@leadsziosalon</p>
+                <p>5,000+ Happy Clients</p>
+                <p>⭐⭐⭐⭐⭐ 4.9 Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Leadszio Salon. All rights reserved. Website by Leadszio</p>
+    </footer>
+</body>
+
+</html>

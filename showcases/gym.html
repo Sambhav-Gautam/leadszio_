@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadszio Gym | Transform Your Body</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff5722;
+            --secondary: #ff9800;
+            --dark: #1a1a1a;
+            --light: #f5f5f5;
+            --accent: #f44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(255, 87, 34, 0.7)),
+                url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6rem;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            border: 3px solid var(--primary);
+        }
+
+        .btn:hover {
+            background: transparent;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 3px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+            border-color: white;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.98);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            letter-spacing: 3px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Stats */
+        .stats {
+            padding: 60px 5%;
+            background: var(--primary);
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+        }
+
+        .stat p {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+        }
+
+        /* Membership */
+        .membership {
+            padding: 100px 5%;
+            background: var(--dark);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 60px;
+        }
+
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .membership-card {
+            background: #222;
+            border: 2px solid #333;
+            padding: 50px 35px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .membership-card:hover,
+        .membership-card.popular {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+        }
+
+        .membership-card.popular {
+            background: linear-gradient(135deg, #222, #2a1a1a);
+        }
+
+        .membership-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .membership-card .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .membership-card .price span {
+            font-size: 1rem;
+            color: #888;
+        }
+
+        .membership-card ul {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .membership-card ul li {
+            padding: 12px 0;
+            color: #aaa;
+            border-bottom: 1px solid #333;
+        }
+
+        .membership-card ul li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .join-btn {
+            display: block;
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .join-btn:hover {
+            background: var(--secondary);
+        }
+
+        /* Classes */
+        .classes {
+            padding: 100px 5%;
+            background: #111;
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .class-card {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .class-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .class-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .class-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        }
+
+        .class-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        .class-card p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Trainers */
+        .trainers {
+            padding: 100px 5%;
+            background: var(--dark);
+        }
+
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trainer-card {
+            text-align: center;
+        }
+
+        .trainer-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .trainer-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .trainer-card .specialty {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .trainer-card p {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 500px;
+            margin: 40px auto 0;
+        }
+
+        .contact-form input,
+        .contact-form select {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: none;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 20px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.02);
+        }
+
+        footer {
+            background: #0a0a0a;
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            nav a {
+                margin: 8px 0;
+            }
+
+            .stats-grid {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">LEADSZIO GYM</div>
+        <div>
+            <a href="#membership">Membership</a>
+            <a href="#classes">Classes</a>
+            <a href="#trainers">Trainers</a>
+            <a href="#join">Join Now</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>TRANSFORM YOUR BODY</h1>
+            <p>Premium fitness facility with world-class equipment and expert trainers</p>
+            <a href="#membership" class="btn">View Plans</a>
+            <a href="#join" class="btn btn-outline">Free Trial</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>500+</h3>
+                <p>Active Members</p>
+            </div>
+            <div class="stat">
+                <h3>15+</h3>
+                <p>Expert Trainers</p>
+            </div>
+            <div class="stat">
+                <h3>50+</h3>
+                <p>Weekly Classes</p>
+            </div>
+            <div class="stat">
+                <h3>24/7</h3>
+                <p>Gym Access</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="membership" class="membership">
+        <h2 class="section-title">CHOOSE YOUR <span>PLAN</span></h2>
+        <p class="section-subtitle">Flexible membership options to fit your lifestyle</p>
+        <div class="membership-grid">
+            <div class="membership-card">
+                <h3>STARTER</h3>
+                <div class="price">₹1,499<span>/month</span></div>
+                <ul>
+                    <li>Gym Floor Access</li>
+                    <li>Basic Equipment</li>
+                    <li>Locker Room</li>
+                    <li>Fitness Assessment</li>
+                </ul>
+                <a href="#join" class="join-btn">Get Started</a>
+            </div>
+            <div class="membership-card popular">
+                <h3>PRO</h3>
+                <div class="price">₹2,999<span>/month</span></div>
+                <ul>
+                    <li>All Starter Benefits</li>
+                    <li>Group Classes</li>
+                    <li>Personal Locker</li>
+                    <li>Diet Consultation</li>
+                    <li>1 PT Session/Week</li>
+                </ul>
+                <a href="#join" class="join-btn">Most Popular</a>
+            </div>
+            <div class="membership-card">
+                <h3>ELITE</h3>
+                <div class="price">₹4,999<span>/month</span></div>
+                <ul>
+                    <li>All Pro Benefits</li>
+                    <li>Unlimited PT Sessions</li>
+                    <li>Spa & Sauna Access</li>
+                    <li>Priority Booking</li>
+                    <li>Guest Passes (2/month)</li>
+                </ul>
+                <a href="#join" class="join-btn">Go Elite</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="classes" class="classes">
+        <h2 class="section-title">GROUP <span>CLASSES</span></h2>
+        <p class="section-subtitle">High-energy sessions led by expert instructors</p>
+        <div class="classes-grid">
+            <div class="class-card">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600" alt="HIIT">
+                <div class="overlay">
+                    <h3>HIIT TRAINING</h3>
+                    <p>Mon, Wed, Fri • 6:00 AM</p>
+                </div>
+            </div>
+            <div class="class-card">
+                <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600" alt="Yoga">
+                <div class="overlay">
+                    <h3>POWER YOGA</h3>
+                    <p>Daily • 7:00 AM</p>
+                </div>
+            </div>
+            <div class="class-card">
+                <img src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?w=600" alt="Spinning">
+                <div class="overlay">
+                    <h3>SPIN CLASS</h3>
+                    <p>Tue, Thu, Sat • 5:30 PM</p>
+                </div>
+            </div>
+            <div class="class-card">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600" alt="CrossFit">
+                <div class="overlay">
+                    <h3>CROSSFIT</h3>
+                    <p>Mon - Sat • 6:30 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainers" class="trainers">
+        <h2 class="section-title">OUR <span>TRAINERS</span></h2>
+        <p class="section-subtitle">Certified experts to guide your fitness journey</p>
+        <div class="trainers-grid">
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400" alt="Trainer">
+                <h3>RAHUL SINGH</h3>
+                <div class="specialty">Strength & Conditioning</div>
+                <p>ACE Certified | 8+ Years</p>
+            </div>
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400" alt="Trainer">
+                <h3>NEHA KAPOOR</h3>
+                <div class="specialty">Yoga & Pilates</div>
+                <p>RYT 500 | 10+ Years</p>
+            </div>
+            <div class="trainer-card">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400" alt="Trainer">
+                <h3>VIKRAM PATEL</h3>
+                <div class="specialty">CrossFit & HIIT</div>
+                <p>CF-L2 Trainer | 6+ Years</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="cta">
+        <h2>START YOUR JOURNEY TODAY</h2>
+        <p>Join now and get your first week FREE!</p>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <select required>
+                <option value="">Select Plan</option>
+                <option>Starter - ₹1,499/month</option>
+                <option>Pro - ₹2,999/month</option>
+                <option>Elite - ₹4,999/month</option>
+                <option>Free Trial First</option>
+            </select>
+            <button type="submit">CLAIM FREE TRIAL</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-logo">LEADSZIO GYM</div>
+        <p>📍 Your City, Your Area | 📞 Contact via website</p>
+        <p>Open 24/7 • Premium Equipment • Expert Trainers</p>
+        <p style="margin-top: 25px;">© 2025 Leadszio Gym. Website by Leadszio</p>
+    </footer>
+</body>
+
+</html>

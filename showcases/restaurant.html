@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadszio Restaurant | Authentic Indian Cuisine</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --dark: #1a1a2e;
+            --light: #fff8f5;
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: #333;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(255, 107, 53, 0.8)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--dark);
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: var(--light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item-content {
+            padding: 25px;
+        }
+
+        .menu-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 5%;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+
+        .feature {
+            padding: 30px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Reservation */
+        .reservation {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .reservation-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            display: grid;
+            gap: 20px;
+        }
+
+        .reservation-form input,
+        .reservation-form select {
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .reservation-form button {
+            padding: 18px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .reservation-form button:hover {
+            transform: scale(1.02);
+        }
+
+        /* Reviews */
+        .reviews {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .review-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .review-card .stars {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .review-card .author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">🍛 Leadszio Restaurant</div>
+        <div>
+            <a href="#menu">Menu</a>
+            <a href="#features">Features</a>
+            <a href="#reservation">Book Table</a>
+            <a href="#reviews">Reviews</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Taste the Tradition</h1>
+            <p>Authentic Indian cuisine crafted with love, spices, and generations of recipes</p>
+            <a href="#menu" class="btn">View Menu</a>
+            <a href="#reservation" class="btn btn-outline">Book a Table</a>
+        </div>
+    </section>
+
+    <section id="menu" class="menu">
+        <h2 class="section-title">Our <span>Signature</span> Dishes</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600" alt="Butter Chicken">
+                <div class="menu-item-content">
+                    <h3>Butter Chicken</h3>
+                    <p>Tender chicken in rich, creamy tomato gravy with aromatic spices</p>
+                    <span class="tag">🌶️ Mild</span><span class="tag">Chef's Special</span>
+                    <div class="price">₹349</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=600" alt="Biryani">
+                <div class="menu-item-content">
+                    <h3>Hyderabadi Biryani</h3>
+                    <p>Fragrant basmati rice layered with spiced meat, slow-cooked to perfection</p>
+                    <span class="tag">🔥 Spicy</span><span class="tag">Popular</span>
+                    <div class="price">₹399</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600" alt="Paneer Tikka">
+                <div class="menu-item-content">
+                    <h3>Paneer Tikka</h3>
+                    <p>Marinated cottage cheese grilled in tandoor with bell peppers</p>
+                    <span class="tag">🥬 Vegetarian</span><span class="tag">Starter</span>
+                    <div class="price">₹279</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" alt="Dal Makhani">
+                <div class="menu-item-content">
+                    <h3>Dal Makhani</h3>
+                    <p>Black lentils slow-cooked overnight in butter and cream</p>
+                    <span class="tag">🥬 Vegetarian</span><span class="tag">Must Try</span>
+                    <div class="price">₹249</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600" alt="Naan">
+                <div class="menu-item-content">
+                    <h3>Garlic Naan Basket</h3>
+                    <p>Freshly baked Indian bread with garlic and butter (4 pieces)</p>
+                    <span class="tag">🥬 Vegetarian</span><span class="tag">Fresh</span>
+                    <div class="price">₹129</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600" alt="Dessert">
+                <div class="menu-item-content">
+                    <h3>Gulab Jamun</h3>
+                    <p>Deep-fried milk dumplings soaked in rose-flavored sugar syrup</p>
+                    <span class="tag">🍬 Sweet</span><span class="tag">Dessert</span>
+                    <div class="price">₹149</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2 class="section-title" style="color: white;">Why <span>Choose Us</span></h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🍽️</div>
+                <h3>Online Ordering</h3>
+                <p>Order your favorite dishes online for delivery or pickup</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📅</div>
+                <h3>Table Reservations</h3>
+                <p>Book your table in advance and skip the wait</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚚</div>
+                <h3>Fast Delivery</h3>
+                <p>Hot and fresh food delivered to your doorstep in 30 minutes</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⭐</div>
+                <h3>5-Star Hygiene</h3>
+                <p>FSSAI certified kitchen with highest hygiene standards</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reservation" class="reservation">
+        <h2 class="section-title" style="color: white;">Book Your <span style="color: var(--dark);">Table</span></h2>
+        <p style="font-size: 1.1rem; opacity: 0.9;">Reserve your spot for an unforgettable dining experience</p>
+        <form class="reservation-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="date" required>
+            <select required>
+                <option value="">Select Time</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>7:00 PM</option>
+                <option>8:00 PM</option>
+                <option>9:00 PM</option>
+            </select>
+            <select required>
+                <option value="">Number of Guests</option>
+                <option>2 Guests</option>
+                <option>4 Guests</option>
+                <option>6 Guests</option>
+                <option>8+ Guests</option>
+            </select>
+            <button type="submit">Reserve Now</button>
+        </form>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <h2 class="section-title">What Our <span>Guests</span> Say</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"The butter chicken here is absolutely divine! Best Indian food I've had in years. The ambiance is
+                    perfect for family dinners."</p>
+                <div class="author">— Priya Sharma</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Table booking was so easy through the website. The biryani was authentic and packed with flavors.
+                    Will definitely come back!"</p>
+                <div class="author">— Rahul Verma</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Fast delivery and food arrived hot! The online ordering system is very convenient. Love the variety
+                    in their menu."</p>
+                <div class="author">— Ananya Gupta</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo" style="font-size: 2rem; margin-bottom: 20px;">🍛 Leadszio Restaurant</div>
+        <p>Your City, Your Area | Open: 11 AM - 11 PM</p>
+        <div class="social-links">
+            <a href="#">📘</a>
+            <a href="#">📸</a>
+            <a href="#">🐦</a>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.9rem;">© 2025 Leadszio Restaurant. All rights reserved. Website by
+            Leadszio</p>
+    </footer>
+</body>
+
+</html>

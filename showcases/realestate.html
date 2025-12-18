@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadszio Properties | Find Your Dream Home</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2196f3;
+            --secondary: #00bcd4;
+            --dark: #1a1a2e;
+            --light: #f8fafc;
+            --gold: #ffc107;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: white;
+            color: #333;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.9), rgba(0, 188, 212, 0.85)),
+                url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 100px 20px 60px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-box select,
+        .search-box input {
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            min-width: 180px;
+            flex: 1;
+        }
+
+        .search-box button {
+            padding: 15px 40px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--dark);
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Stats */
+        .stats {
+            padding: 60px 5%;
+            background: var(--dark);
+            color: white;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .stat p {
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        /* Properties */
+        .properties {
+            padding: 100px 5%;
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(33, 150, 243, 0.15);
+        }
+
+        .property-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .property-content {
+            padding: 25px;
+        }
+
+        .property-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .property-content .location {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .property-content .location::before {
+            content: "📍 ";
+        }
+
+        .property-features {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .property-features span {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .property-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .property-price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #888;
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .property-image {
+            position: relative;
+        }
+
+        /* EMI Calculator */
+        .emi {
+            padding: 100px 5%;
+            background: white;
+        }
+
+        .emi-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .emi-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .emi-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .emi-form input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .emi-form input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .emi-result {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--light);
+            border-radius: 15px;
+        }
+
+        .emi-result h3 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 18px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.02);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            nav a {
+                margin: 8px 0;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">🏠 Leadszio Properties</div>
+        <div>
+            <a href="#properties">Properties</a>
+            <a href="#emi">EMI Calculator</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Home</h1>
+            <p>Discover premium properties across the city with virtual tours and instant support</p>
+            <div class="search-box">
+                <select>
+                    <option>Property Type</option>
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                    <option>Plot</option>
+                    <option>Commercial</option>
+                </select>
+                <select>
+                    <option>Location</option>
+                    <option>Whitefield</option>
+                    <option>Koramangala</option>
+                    <option>Indiranagar</option>
+                    <option>HSR Layout</option>
+                </select>
+                <select>
+                    <option>Budget</option>
+                    <option>₹30L - ₹50L</option>
+                    <option>₹50L - ₹1Cr</option>
+                    <option>₹1Cr - ₹2Cr</option>
+                    <option>₹2Cr+</option>
+                </select>
+                <button>🔍 Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>500+</h3>
+                <p>Properties Listed</p>
+            </div>
+            <div class="stat">
+                <h3>200+</h3>
+                <p>Happy Families</p>
+            </div>
+            <div class="stat">
+                <h3>₹150Cr+</h3>
+                <p>Property Sold</p>
+            </div>
+            <div class="stat">
+                <h3>15+</h3>
+                <p>Years Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="properties">
+        <h2 class="section-title">Featured Properties</h2>
+        <p class="section-subtitle">Handpicked premium listings for you</p>
+        <div class="properties-grid">
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" alt="Property">
+                    <span class="property-badge">Hot Deal</span>
+                </div>
+                <div class="property-content">
+                    <h3>Luxury 3 BHK Apartment</h3>
+                    <div class="location">Whitefield, Bangalore</div>
+                    <div class="property-features">
+                        <span>🛏️ 3 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,850 sqft</span>
+                    </div>
+                    <div class="property-price">₹1.25 Cr <span>onwards</span></div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" alt="Property">
+                    <span class="property-badge">New Launch</span>
+                </div>
+                <div class="property-content">
+                    <h3>Premium Villa with Garden</h3>
+                    <div class="location">Sarjapur Road, Bangalore</div>
+                    <div class="property-features">
+                        <span>🛏️ 4 Beds</span>
+                        <span>🚿 4 Baths</span>
+                        <span>📐 3,200 sqft</span>
+                    </div>
+                    <div class="property-price">₹2.75 Cr <span>onwards</span></div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800" alt="Property">
+                    <span class="property-badge">Ready to Move</span>
+                </div>
+                <div class="property-content">
+                    <h3>Modern 2 BHK Flat</h3>
+                    <div class="location">Koramangala, Bangalore</div>
+                    <div class="property-features">
+                        <span>🛏️ 2 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,200 sqft</span>
+                    </div>
+                    <div class="property-price">₹85 Lakh <span>onwards</span></div>
+                </div>
+            </div>
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800" alt="Property">
+                    <span class="property-badge">Virtual Tour</span>
+                </div>
+                <div class="property-content">
+                    <h3>Penthouse with Terrace</h3>
+                    <div class="location">Indiranagar, Bangalore</div>
+                    <div class="property-features">
+                        <span>🛏️ 4 Beds</span>
+                        <span>🚿 5 Baths</span>
+                        <span>📐 4,500 sqft</span>
+                    </div>
+                    <div class="property-price">₹4.5 Cr <span>onwards</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="emi" class="emi">
+        <div class="emi-container">
+            <h2 class="section-title">EMI Calculator</h2>
+            <p class="section-subtitle">Plan your home loan easily</p>
+            <div class="emi-form">
+                <div>
+                    <label>Loan Amount (₹)</label>
+                    <input type="number" placeholder="e.g., 5000000" id="loanAmount">
+                </div>
+                <div>
+                    <label>Interest Rate (%)</label>
+                    <input type="number" placeholder="e.g., 8.5" id="interestRate">
+                </div>
+                <div>
+                    <label>Loan Tenure (Years)</label>
+                    <input type="number" placeholder="e.g., 20" id="tenure">
+                </div>
+            </div>
+            <div class="emi-result">
+                <p>Your Monthly EMI</p>
+                <h3 id="emiResult">₹43,391</h3>
+                <p style="color: #666; font-size: 0.9rem;">Based on ₹50L loan @ 8.5% for 20 years</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>📍 Your City, Your Area</p>
+                <p>📞 Contact via website form</p>
+                <p>✉️ contact@leadszioproperties.in</p>
+                <p>🕐 Mon-Sat: 9 AM - 7 PM</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="4" placeholder="I'm interested in..."></textarea>
+                <button type="submit">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.2rem; margin-bottom: 15px;">🏠 Leadszio Properties</p>
+        <p>Your trusted partner in finding the perfect home</p>
+        <p style="margin-top: 20px;">© 2025 Leadszio Properties. Website by Leadszio</p>
+    </footer>
+</body>
+
+</html>
