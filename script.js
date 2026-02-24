@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomCursor();
     initMagneticButtons();
     init3DTiltCards();
-    initTextScramble();
+
     initClickRipples();
     initEasterEggs();
     initParallaxElements();
@@ -268,32 +268,7 @@ function init3DTiltCards() {
     });
 }
 
-/* ============================
-   🔤 TEXT SCRAMBLE EFFECT
-   ============================ */
-function initTextScramble() {
-    const chars = '!<>-_\\/[]{}—=+*^?#________';
 
-    document.querySelectorAll('.section-title, .project-content h3').forEach(el => {
-        const originalText = el.textContent;
-
-        el.addEventListener('mouseenter', () => {
-            let iterations = 0;
-            const interval = setInterval(() => {
-                el.textContent = originalText
-                    .split('')
-                    .map((char, index) => {
-                        if (index < iterations) return originalText[index];
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    })
-                    .join('');
-
-                if (iterations >= originalText.length) clearInterval(interval);
-                iterations += 1 / 3;
-            }, 30);
-        });
-    });
-}
 
 /* ============================
    💫 CLICK RIPPLES

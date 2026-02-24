@@ -1681,6 +1681,59 @@ section {
     font-size: 0.875rem;
 }
 
+.footer-content {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.footer-link:hover {
+    color: var(--primary-light);
+}
+
+.footer-separator {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.footer-copyright {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.footer-disclaimer {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+    opacity: 0.7;
+}
+
+/* Testimonial / Portfolio Disclaimer */
+.disclaimer-note {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
 /* ============================
    SCROLL ANIMATIONS
    ============================ */
@@ -2121,11 +2174,7 @@ section {
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Text Scramble cursor */
-.section-title,
-.project-content h3 {
-    cursor: default;
-}
+
 
 /* Enhanced Scroll Reveal with bounce */
 .reveal {
