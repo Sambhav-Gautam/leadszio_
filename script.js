@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCustomCursor();
     initMagneticButtons();
     init3DTiltCards();
+    initHero3D();
 
     initClickRipples();
     initEasterEggs();
@@ -685,6 +686,151 @@ function toggleFaq(element) {
     if (!isActive) {
         faqItem.classList.add('active');
     }
+}
+
+/* ============================
+   🎲 3D HERO SCENE (Three.js)
+   ============================ */
+function initHero3D() {
+    const container = document.getElementById('hero3d');
+    if (!container || typeof THREE === 'undefined') return;
+
+    // Setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+    camera.position.z = 4;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(400, 400);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+    container.appendChild(renderer.domElement);
+
+    // Materials
+    const wireMaterial = new THREE.MeshBasicMaterial({
+        color: 0x6366f1,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.4
+    });
+
+    const edgeMaterial = new THREE.LineBasicMaterial({
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.6
+    });
+
+    const innerMaterial = new THREE.MeshBasicMaterial({
+        color: 0xf472b6,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.3
+    });
+
+    const glowMaterial = new THREE.MeshBasicMaterial({
+        color: 0x6366f1,
+        transparent: true,
+        opacity: 0.08,
+        side: THREE.BackSide
+    });
+
+    // Main Icosahedron (wireframe)
+    const icoGeo = new THREE.IcosahedronGeometry(1.5, 1);
+    const icoMesh = new THREE.Mesh(icoGeo, wireMaterial);
+    scene.add(icoMesh);
+
+    // Edges of icosahedron (sharp lines)
+    const icoEdges = new THREE.EdgesGeometry(icoGeo);
+    const icoLine = new THREE.LineSegments(icoEdges, edgeMaterial);
+    scene.add(icoLine);
+
+    // Inner Octahedron
+    const octGeo = new THREE.OctahedronGeometry(0.7, 0);
+    const octMesh = new THREE.Mesh(octGeo, innerMaterial);
+    scene.add(octMesh);
+
+    // Glow sphere
+    const glowGeo = new THREE.SphereGeometry(2.2, 16, 16);
+    const glowMesh = new THREE.Mesh(glowGeo, glowMaterial);
+    scene.add(glowMesh);
+
+    // Floating dots (vertices as points)
+    const dotsGeo = new THREE.BufferGeometry();
+    const dotPositions = [];
+    for (let i = 0; i < 60; i++) {
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        const r = 1.8 + Math.random() * 0.8;
+        dotPositions.push(
+            r * Math.sin(phi) * Math.cos(theta),
+            r * Math.sin(phi) * Math.sin(theta),
+            r * Math.cos(phi)
+        );
+    }
+    dotsGeo.setAttribute('position', new THREE.Float32BufferAttribute(dotPositions, 3));
+    const dotsMaterial = new THREE.PointsMaterial({
+        color: 0xf472b6,
+        size: 0.04,
+        transparent: true,
+        opacity: 0.6
+    });
+    const dotsPoints = new THREE.Points(dotsGeo, dotsMaterial);
+    scene.add(dotsPoints);
+
+    // Mouse tracking
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    // Resize handler
+    function onResize() {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', onResize);
+    onResize();
+
+    // Animation loop
+    function animate() {
+        requestAnimationFrame(animate);
+
+        const t = Date.now() * 0.001;
+
+        // Slow auto-rotation
+        icoMesh.rotation.x = t * 0.15;
+        icoMesh.rotation.y = t * 0.2;
+        icoLine.rotation.copy(icoMesh.rotation);
+
+        // Inner shape counter-rotates
+        octMesh.rotation.x = -t * 0.3;
+        octMesh.rotation.y = -t * 0.25;
+
+        // Dots orbit
+        dotsPoints.rotation.y = t * 0.08;
+        dotsPoints.rotation.x = t * 0.05;
+
+        // Mouse parallax (subtle)
+        const targetRotX = mouseY * 0.3;
+        const targetRotY = mouseX * 0.3;
+        scene.rotation.x += (targetRotX - scene.rotation.x) * 0.05;
+        scene.rotation.y += (targetRotY - scene.rotation.y) * 0.05;
+
+        // Pulsing glow
+        glowMesh.scale.setScalar(1 + Math.sin(t * 1.5) * 0.05);
+
+        // Color shift
+        const hue = (t * 0.02) % 1;
+        edgeMaterial.color.setHSL(hue * 0.1 + 0.68, 0.7, 0.6);
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
 }
 
 console.log('🚀 Leadszio Portfolio Loaded Successfully!');

@@ -1735,6 +1735,61 @@ section {
 }
 
 /* ============================
+   3D HERO ELEMENT
+   ============================ */
+.hero-3d-container {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.3));
+}
+
+.hero-3d-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* 3D Service Card Highlight */
+.service-card-3d {
+    border-color: var(--primary) !important;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(244, 114, 182, 0.08)) !important;
+}
+
+.service-card-3d .service-icon {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(244, 114, 182, 0.2));
+}
+
+@media (max-width: 1024px) {
+    .hero-3d-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 280px;
+        height: 280px;
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-3d-container {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* ============================
    SCROLL ANIMATIONS
    ============================ */
 .reveal {
